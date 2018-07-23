@@ -1,0 +1,26 @@
+{
+  "name": "graphlib-poc",
+  "version": "1.0.0",
+  "description": "Proof of Concept for Graphlib module (graph database framework)",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "graphlib",
+    "poc",
+    "graph",
+    "database"
+  ],
+  "author": "Vinicius Covre",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vinacovre/graphlib-poc"
+  },
+  "dependencies": {
+    "graphlib": "^2.1.5",
+    "lodash": "^4.17.10"
+  }
+}

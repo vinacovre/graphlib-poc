@@ -1,2 +1,3 @@
-# graphlib-poc
-Proof of Concept for Graphlib module (graph database framework)
+# P.O.C. Graphlib
+
+Proof of Concept for [Graphlib](https://github.com/dagrejs/graphlib/wiki/API-Reference) module (graph database framework)
