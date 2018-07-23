@@ -37,7 +37,7 @@ const predecessorsSub = g.predecessors('sub');
 // console.log(`\nPredecessors of sub: ${JSON.stringify(predecessorsSub, null, 2)}`);
 
 const contentType = 'navbar';
-const roots = getRoots(g, contentType);
+const roots = getRoots({g, contentType});
 
 console.log(`\nROOTS OF '${contentType}':`);
 console.log(roots);
