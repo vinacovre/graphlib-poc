@@ -39,7 +39,7 @@ const predecessorsSub = g.predecessors('sub');
 const contentType = 'navbar';
 const roots = getRoots(g, contentType);
 
-console.log(`\nROOTS OF '${contentType.toUpperCase()}':`);
+console.log(`\nROOTS OF '${contentType}':`);
 console.log(roots);
-console.log(`\nROOTS COUNT ('${contentType.toUpperCase()}'):`);
+console.log(`\nROOTS COUNT ('${contentType}'):`);
 console.log(roots.length);
