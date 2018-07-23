@@ -1,39 +1,23 @@
-const _ = require('lodash');
+const content = require('./content.json').content_types;
 const Graph = require('graphlib').Graph;
+const _ = require('lodash');
+let g = new Graph();
 
-var g = new Graph();
+let all = [];
+content.forEach(contentType => {
+  g.setNode(contentType.uid);
+  const schema = contentType.schema;
+  const references = schema
+    .filter(dataType => dataType.data_type === 'reference')
+    .map(destination => {
+      console.log(`Seting edge from ${contentType.uid} to ${destination.uid} `);
+      g.setEdge(contentType.uid, destination.uid);
+      return destination.uid;
+    });
 
-g.setNode('main');
-g.setNode('sub');
-g.setNode('footer');
-g.setEdge('main', 'sub', 'references');
-g.setEdge('sub', 'footer', 'references');
-
-g.setEdge('main2', 'sub', 'references');
-g.setEdge('main3', 'sub', 'references');
-g.setEdge('sub', 'footer2', 'references');
-g.setEdge('footer2', 'sub_footer', 'references');
-g.setEdge('sub_footer', 'navbar', 'references');
-g.setEdge('heading_tag', 'navbar', 'references');
-g.setEdge('title1', 'heading_tag', 'references');
-g.setEdge('title2', 'heading_tag', 'references');
-
-console.log('NODES:');
-console.log(g.nodes());
-
-console.log('\nEDGES:');
-console.log(g.edges());
-
-// Which edges leave node 'sub'?
-const outSub = g.outEdges('sub');
-console.log(`\nEdges leaving sub: \n${JSON.stringify(outSub, null, 2)}`);
-
-// Which edges enter and leave node 'sub'?
-const bothSub = g.nodeEdges('sub');
-console.log(`\nEdges entering & leaving sub: ${JSON.stringify(bothSub, null, 2)}`);
-
-const predecessorsSub = g.predecessors('sub');
-console.log(`\nPredecessors of sub: ${JSON.stringify(predecessorsSub, null, 2)}`);
+  all.push({contentType: contentType.uid, references});
+});
+console.log(g.inEdges('navbar').length);
 
 const getRoots = contentType => {
   const predecessors = g.predecessors(contentType);
@@ -49,7 +33,11 @@ const getRoots = contentType => {
   return predecessors.map(contentType => getRoots(contentType));
 }
 
-const roots = getRoots('navbar');
+const contentType = 'footer';
+const roots = getRoots(contentType);
 const flattenRoots = _.flattenDeep(roots);
-console.log('\nRESULT:\n');
+
+console.log(`\nROOTS OF '${contentType.toUpperCase()}':`);
 console.log(flattenRoots);
+console.log(`\nROOTS COUNT ('${contentType.toUpperCase()}'):`);
+console.log(flattenRoots.length);
