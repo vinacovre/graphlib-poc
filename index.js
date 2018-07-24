@@ -4,7 +4,7 @@ const getRoots = require('./lib/get-roots');
 const buildGraph = require('./lib/build-graph');
 const showRoots = require('./lib/show-roots');
 
-const content = require('./content.json').content_types;
+const content = require('./res/content.json').content_types;
 
 let g = new Graph();
 
