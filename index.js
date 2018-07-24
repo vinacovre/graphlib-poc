@@ -1,7 +1,8 @@
 const Graph = require('graphlib').Graph;
 const _ = require('lodash');
-const getRoots = require('./get-roots');
-const buildGraph = require('./build-graph');
+const getRoots = require('./lib/get-roots');
+const buildGraph = require('./lib/build-graph');
+const showRoots = require('./lib/show-roots');
 
 const content = require('./content.json').content_types;
 
@@ -12,7 +13,4 @@ buildGraph({g, content});
 const contentType = 'faq';
 const roots = getRoots({g, contentType});
 
-console.log(`\nROOTS OF '${contentType}':`);
-console.log(roots);
-console.log(`\nROOTS COUNT ('${contentType}'):`);
-console.log(roots.length);
+showRoots({roots, contentType});

@@ -1,6 +1,7 @@
 const _ = require('lodash');
 const Graph = require('graphlib').Graph;
-const getRoots = require('./get-roots');
+const getRoots = require('./lib/get-roots');
+const showRoots = require('./lib/show-roots');
 
 let g = new Graph();
 
@@ -39,7 +40,4 @@ const predecessorsSub = g.predecessors('sub');
 const contentType = 'navbar';
 const roots = getRoots({g, contentType});
 
-console.log(`\nROOTS OF '${contentType}':`);
-console.log(roots);
-console.log(`\nROOTS COUNT ('${contentType}'):`);
-console.log(roots.length);
+showRoots({roots, contentType});
